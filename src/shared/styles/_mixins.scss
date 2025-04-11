@@ -1,0 +1,33 @@
+@mixin title {
+  font-weight: 500;
+  font-size: 1.875rem; 
+  line-height: 140%;
+}
+
+@mixin subtitle {
+  font-weight: 400;
+  font-size: 1.125rem; 
+  line-height: 140%;
+}
+
+@mixin paragraph {
+  font-weight: 400;
+  font-size: 1rem; 
+  line-height: 160%;
+}
+
+@mixin paragraph-mini {
+  font-weight: 400;
+  font-size: 0.75rem; 
+  line-height: 160%;
+}
+
+@mixin button-text {
+  font-weight: 500;
+  font-size: 1rem; 
+  line-height: 160%;
+}
+
+@mixin default-transition($var){
+  transition: $var .3s ease-in;
+}

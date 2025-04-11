@@ -1,0 +1,22 @@
+@use '../../shared/styles/mixins' as *;
+@use '../../shared/styles/vars' as *;
+
+
+.footer {
+    border-top: 1px solid $strokes-secondady;
+}
+
+.inner {
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include paragraph;
+    color: $gray;
+}
+
+.link {
+    font-family: inherit;
+    text-decoration: none;
+    color: $text-color;
+}

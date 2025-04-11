@@ -1,0 +1,52 @@
+@use '../../../shared/styles/mixins' as *;
+@use '../../../shared/styles/vars' as *;
+
+
+.btn {
+    cursor: pointer;
+    @include button-text;
+    @include default-transition(all);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    padding: 0 33px;
+    &.filled {
+        height: 50px;
+        background: $text-color;
+        border: none;
+        color: $background-primary;
+        &:focus-visible {
+            outline: 1px solid $gray;
+            outline-offset: -1px;
+        }
+        &:disabled {
+            background: $strokes-primary; 
+            color: $background-secondary;
+        }
+
+    }
+
+    &.outline {
+        height: 40px;
+        background: $background-primary;
+        border: 1px solid $strokes-primary;
+        color: $text-color; 
+        &:focus-visible {
+            border: 1px solid $gray;
+        }
+        &:disabled {
+            border: 1px solid $background-secondary;
+            background: $background-secondary;
+            color: $strokes-primary;
+        }
+
+        @media screen and (hover:hover) {
+            &:hover:not(:disabled) {
+                    border: 1px solid $gray;
+            }
+        }
+    }
+}
+
+

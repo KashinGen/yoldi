@@ -1,0 +1,48 @@
+@use '../../../../shared/styles/mixins' as *;
+@use '../../../../shared/styles/vars' as *;
+
+.info {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.controls {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+.name {
+    @include title;
+}
+
+.email {
+    @include paragraph;
+    color: gray;
+}
+
+.description {
+    max-width: 600px;
+    @include paragraph;
+    margin: 30px 0 60px;
+}
+
+.avatar {
+    position: absolute;
+    top: -50px;
+}
+
+.top {
+    position: relative;
+    height: 85px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

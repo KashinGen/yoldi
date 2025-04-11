@@ -1,0 +1,67 @@
+@use '../../../shared/styles/mixins' as *;
+@use '../../../shared/styles/vars' as *;
+
+
+.container {
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid $strokes-primary;
+    position: relative;
+    &.focused {
+        border: 1px solid $strokes-primary;
+    }
+    @media screen and (hover:hover) {
+        &:hover {
+            border: 1px solid $gray;
+        }
+    }
+    &.error {
+        border: 1px solid $error;
+    }
+    &.disabled {
+        border: 1px solid $background-secondary;
+    }
+    &.withIcon {
+        .input {
+            padding-left: 55px;
+        }
+
+    }
+}
+
+.input {
+    padding: 12px 20px;
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+    background-color: $background-primary;
+    font-family: inherit;
+    color: $text-color;
+    @include paragraph;
+    outline: none;
+    border: none;
+    box-shadow: none !important;
+    &::placeholder {
+        color: $gray;
+    }
+    &:disabled {
+        background-color: $background-secondary;
+        color: $gray;
+    }
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active  {
+     box-shadow: none !important;
+     
+}
+}
+
+.icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 25px;
+    height: 25px;
+}

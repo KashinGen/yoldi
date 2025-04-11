@@ -1,0 +1,9 @@
+@use '../../../shared/styles/mixins' as *;
+@use '../../../shared/styles/vars' as *;
+
+.cover {
+    width: 100%;
+    height: 200px;
+    border-bottom: 1px solid $strokes-secondady;
+    background-color: $background-secondary;
+}

@@ -1,0 +1,31 @@
+@use '../../../shared/styles/mixins' as *;
+@use '../../../shared/styles/vars' as *;
+
+.form {
+    border-radius: 5px;
+    background: $background-primary;
+    border: 1px solid $strokes-secondady;
+    padding: 30px; 
+    max-width: 400px;
+    width: 400px;
+
+}
+
+.formInner {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.title {
+    @include title;
+}
+
+.formGroup {
+    width: 100%;
+    padding: 0 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
