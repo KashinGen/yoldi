@@ -4,18 +4,30 @@ import classNames from "classnames";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { ChangeEvent } from "react";
-import { imageSchema, validateFile } from "../../model/image";
+import { imageSchema, uploadImage, validateFile } from "../../model/image";
+import { useUser } from "../../model";
+import { editProfile } from "../../model/api";
 const CameraIcon = dynamic(
   () => import("@/shared/assets/icons/camera-solid.svg"),
 );
 
-interface AvatarProps {
+type SmallAvatarProps = {
+  variant: "small";
+  isEditable?: never;
+  onChangeAvatarSuccess?: never;
+};
+
+type BigAvatarProps = {
+  variant: "big";
+  isEditable?: boolean;
+  onChangeAvatarSuccess: () => void;
+};
+
+type AvatarProps = {
   className?: string;
   name: string;
   url?: string;
-  variant: "big" | "small";
-  isEditable?: boolean;
-}
+} & (SmallAvatarProps | BigAvatarProps);
 
 const getSize = (variant: "big" | "small") => {
   if (variant === "big") {
@@ -35,17 +47,27 @@ export const Avatar = ({
   name,
   url,
   variant,
-  isEditable = false,
   className = "",
+  ...props
 }: AvatarProps) => {
   const { width, height } = getSize(variant);
-
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const { mutate } = useUser();
+  const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const isValid = validateFile(file, imageSchema);
       if (isValid) {
-        console.log(file);
+        try {
+          const formData = new FormData();
+          formData.append("file", file);
+          const imageInfo = await uploadImage(formData);
+          await editProfile({ imageId: imageInfo.id });
+          mutate();
+          //eslint-disable-next-line
+          props.onChangeAvatarSuccess && props.onChangeAvatarSuccess();
+        } catch (e) {
+          console.log(e);
+        }
       }
     }
   };
@@ -55,11 +77,11 @@ export const Avatar = ({
       className={classNames(
         cls.avatar,
         cls[variant],
-        { [cls.editable]: isEditable },
+        { [cls.editable]: props.isEditable },
         className,
       )}
     >
-      {isEditable && (
+      {props.isEditable && (
         <label htmlFor="file-input" className={cls.upload}>
           <CameraIcon />
           <input

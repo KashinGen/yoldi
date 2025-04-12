@@ -5,7 +5,7 @@ import { editProfileSchema, editProfileValues } from "../model/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { User } from "@/entities/user/model/types";
-import { editProfile } from "../lib/api";
+import { editProfile } from "@/entities/user/model/api";
 import { useUser } from "@/entities/user";
 
 interface ModalSettingsProps {

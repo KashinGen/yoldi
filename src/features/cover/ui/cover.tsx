@@ -6,6 +6,13 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useRef } from "react";
 import { ImageType } from "@/entities/user/model/types";
+import {
+  imageSchema,
+  uploadImage,
+  validateFile,
+} from "@/entities/user/model/image";
+import { editProfile } from "@/entities/user/model/api";
+import { useUser } from "@/entities/user";
 const UploadIcon = dynamic(
   () => import("@/shared/assets/icons/upload-solid.svg"),
 );
@@ -18,6 +25,7 @@ interface CoverProps {
   className?: string;
   isEditable?: boolean;
   image?: ImageType;
+  onApiCallSuccess: () => void;
 }
 
 const getBtnContent = (image: ImageType | undefined) => {
@@ -39,16 +47,49 @@ const getBtnContent = (image: ImageType | undefined) => {
   );
 };
 
-export const Cover = ({ className = "", isEditable, image }: CoverProps) => {
+export const Cover = ({
+  className = "",
+  isEditable,
+  onApiCallSuccess,
+  image,
+}: CoverProps) => {
   const fileInput = useRef<HTMLInputElement>(null);
-  const onBtnClick = () => {
+  const { mutate } = useUser();
+  const onBtnClick = async () => {
     if (image) {
+      try {
+        await editProfile({ coverId: null });
+        mutate();
+        onApiCallSuccess();
+      } catch (e) {
+        console.log(e);
+      }
     } else {
       if (fileInput.current) {
         fileInput.current.click();
       }
     }
   };
+
+  const handleImgChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const isValid = validateFile(file, imageSchema);
+      if (isValid) {
+        try {
+          const formData = new FormData();
+          formData.append("file", file);
+          const imageInfo = await uploadImage(formData);
+          await editProfile({ coverId: imageInfo.id });
+          mutate();
+          onApiCallSuccess();
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    }
+  };
+
   return (
     <div
       className={classNames(
@@ -66,7 +107,12 @@ export const Cover = ({ className = "", isEditable, image }: CoverProps) => {
           >
             {getBtnContent(image)}
           </Button>
-          <input type="file" className={cls.inputFile} ref={fileInput} />
+          <input
+            type="file"
+            className={cls.inputFile}
+            ref={fileInput}
+            onChange={handleImgChange}
+          />
         </div>
       )}
       {image && (

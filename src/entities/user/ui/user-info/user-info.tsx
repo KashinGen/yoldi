@@ -60,6 +60,7 @@ export const UserInfo = ({
           className={cls.avatar}
           url={image?.url}
           isEditable={isOwner}
+          onChangeAvatarSuccess={mutate}
         />
       </div>
       <div className={cls.controls}>

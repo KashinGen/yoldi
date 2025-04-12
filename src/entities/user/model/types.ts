@@ -13,3 +13,12 @@ export type ImageType = {
   width: string;
   height: string;
 };
+
+export type EditUserValues = {
+  name: string;
+  email: string;
+  slug: string;
+  description: string;
+  imageId: string;
+  coverId?: string | null;
+};

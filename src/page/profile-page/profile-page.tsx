@@ -21,7 +21,11 @@ export const ProfilePage = ({ slug }: { slug: string }) => {
 
   return (
     <>
-      <Cover image={profile.cover} isEditable={!!isOwner} />
+      <Cover
+        image={profile.cover}
+        isEditable={!!isOwner}
+        onApiCallSuccess={mutate}
+      />
       <UserInfo account={profile} isOwner={!!isOwner} mutate={mutate} />
     </>
   );
