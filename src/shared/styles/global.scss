@@ -27,6 +27,19 @@ body {
   flex-direction: column;
 }
 
+.disable-scroll-only {
+  overflow: hidden !important;
+  // overscroll-behavior-y: contain;
+  
+}
+
+.disable-scroll-only-body {
+  overflow-anchor: none;
+  position: static;
+  overflow-x: visible;
+}
+
+
 .main-auth {
   background: $background-secondary;
   display: flex;
@@ -37,3 +50,5 @@ body {
 main {
   flex-grow: 1;
 }
+
+

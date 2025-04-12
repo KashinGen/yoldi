@@ -15,7 +15,7 @@ type FormProps = {
 export const Form = ( { className = '', title, submitText, onSubmit, disabled, children  }: FormProps & ComponentPropsWithoutRef<'form'> ) => {
 
   return (
-    <form className={classNames(cls.form, className)} onSubmit={onSubmit}>
+    <form className={classNames(cls.form, className)} onSubmit={onSubmit} autoComplete="off">
       <div className={cls.formInner}>
         <h1 className={cls.title}>{title}</h1>
         <div className={cls.formGroup}>

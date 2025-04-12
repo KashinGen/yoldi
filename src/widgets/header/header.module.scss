@@ -22,3 +22,9 @@
     @include paragraph;
     max-width: 226px;
 }
+
+@media screen and (max-width: 780px) {
+    .slogan {
+        display: none;
+    }
+}

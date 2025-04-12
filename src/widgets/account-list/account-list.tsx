@@ -11,7 +11,10 @@ export const AccountList = ( { className = '', accounts }: AccountListProps ) =>
   return (
     <ul className={classNames(cls.list, className)}>
         {accounts.map((account: any) => (
-            <UserCard key={account.slug}  name={account.name} slug={account.slug} email={account.email}/>
+            <li>
+                <UserCard key={account.slug}  name={account.name} slug={account.slug} email={account.email}/>
+            </li>
+            
         ))}
     </ul>
   );

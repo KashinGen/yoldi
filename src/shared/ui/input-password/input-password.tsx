@@ -13,9 +13,9 @@ interface InputPasswordProps extends React.ComponentPropsWithoutRef<'input'> {
     icon?: React.ReactNode;
     error?: boolean;
 }
+
 export const InputPassword = ( { className = '', containerClassName = '',  ...props }: InputPasswordProps ) => {
     const [isShown, setIsShown] = useState(false);
-    console.log(props)
     const contClassName = classNames(
         cls.wrapper,
         {

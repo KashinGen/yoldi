@@ -3,7 +3,6 @@
 
 
 .container {
-    height: 50px;
     border-radius: 5px;
     border: 1px solid $strokes-primary;
     position: relative;
@@ -30,7 +29,7 @@
     }
 }
 
-.input {
+.textarea {
     padding: 12px 20px;
     border-radius: 5px;
     height: 100%;
@@ -42,7 +41,9 @@
     outline: none;
     border: none;
     box-shadow: none !important;
-    
+    overflow: hidden; /* Убираем полосы прокрутки */
+    resize: none;
+    min-height: 100px;
     &:focus-visible {
         outline: none;
     }
@@ -60,13 +61,4 @@
      box-shadow: none !important;
      
 }
-}
-
-.icon {
-    position: absolute;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 25px;
-    height: 25px;
 }

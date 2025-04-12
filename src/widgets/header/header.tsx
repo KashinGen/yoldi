@@ -20,7 +20,7 @@ export const Header = ( { className = '' }:headerProps ) => {
             <p className={cls.slogan}>Разрабатываем и запускаем сложные веб проекты</p>
         </div>
         <div className={cls.controls}>
-            <Button variant='outline'>Войти</Button>
+            <Button variant='outline' as='link' href='/login'>Войти</Button>
         </div>
 
       </div>

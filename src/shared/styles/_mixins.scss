@@ -31,3 +31,50 @@
 @mixin default-transition($var){
   transition: $var .3s ease-in;
 }
+
+@mixin hide-scrollbar() {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes skeleton-animation {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+
+
+
+@mixin skeleton {
+  overflow: hidden;
+
+  position: relative;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      120deg,
+      #e5e5e5 30%,
+      #ffffff 38%,
+      #f2f2f2 40%,
+      #e5e5e5 48%
+  );
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  animation: load 1.5s infinite;
+  }
+}

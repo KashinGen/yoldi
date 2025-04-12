@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Header } from "@/widgets";
+import { MODAL_ROOT } from "@/shared/const";
 
 
 
@@ -19,6 +20,7 @@ export default function PersonalLayout({
         <main>
             {children}
         </main>
+        <div id={MODAL_ROOT}></div>
     </>
   );
 }

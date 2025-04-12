@@ -1,9 +1,12 @@
+'use client'
 import cls from './user-info.module.scss';
 import classNames from 'classnames';
 import { Avatar } from '../avatar';
 import { Button } from '@/shared/ui';
 import PenIcon from '@/shared/assets/icons/pen-solid.svg'
 import SignOut from '@/shared/assets/icons/sign-out-alt-solid.svg'
+import { useState } from 'react';
+import { ModalSettings } from '@/features/modal-settings';
 
 interface UserInfoProps {
   className?: string;
@@ -14,6 +17,7 @@ interface UserInfoProps {
 }
 
 export const UserInfo = ( { name, email, descripton, className = '' }: UserInfoProps ) => {
+    const [isModalOpened, setIsModalOpened] = useState(false);
   return (
     <section className={classNames(cls.info, className)}>
       <div className={cls.top}>
@@ -24,7 +28,7 @@ export const UserInfo = ( { name, email, descripton, className = '' }: UserInfoP
             <span className={cls.name}>{name}</span>
             <span className={cls.email}>{email}</span>
         </div>
-        <Button variant='outline' className={cls.btn}>
+        <Button variant='outline' className={cls.btn} onClick={() => setIsModalOpened(true)}>
             <PenIcon/><span>Редактировать</span>
         </Button>
       </div>
@@ -36,6 +40,7 @@ export const UserInfo = ( { name, email, descripton, className = '' }: UserInfoP
             <SignOut/><span>Выйти</span>
         </Button>
       </div>
+      {isModalOpened && <ModalSettings onClose={() => setIsModalOpened(false)}/>}
     </section>
   );
 };

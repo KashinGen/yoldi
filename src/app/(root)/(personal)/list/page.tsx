@@ -1,6 +1,7 @@
 'use client'
 import { useGetAccounts } from "@/features";
 import { AccountList } from "@/widgets";
+import cls from './page.module.scss';
 
 
 const AccountsPage = () => {
@@ -10,8 +11,8 @@ const AccountsPage = () => {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div>
-      <h1>Список аккаунтов</h1>
+    <div className={cls.wrapper}>
+      <h1 className={cls.title}>Список аккаунтов</h1>
       <AccountList accounts={accounts} />
     </div>
   );

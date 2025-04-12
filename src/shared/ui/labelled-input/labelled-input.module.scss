@@ -1,0 +1,17 @@
+@use '../../../shared/styles/mixins' as *;
+@use '../../../shared/styles/vars' as *;
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    & > * {
+        width: 100%;
+    }
+}
+
+.label {
+    color: $gray;
+    @include button-text;
+}
