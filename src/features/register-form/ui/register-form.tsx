@@ -12,12 +12,8 @@ import { signUp } from '../lib/api';
 import { sessionService } from '@/shared/lib/session';
 
 
-type RegisterFormProps = {
-    className?: string;
-};
 
-  
-export const RegisterForm = ({ className = '' }: RegisterFormProps) => {
+export const RegisterForm = () => {
     const { register, handleSubmit, formState: { errors, isSubmitting, isValid }, watch } = useForm<RegisterFormValues>({
         resolver: zodResolver(registerSchema),
       });

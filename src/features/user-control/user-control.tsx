@@ -1,6 +1,7 @@
 'use client'
 import { useUser } from '@/entities/user';
 import { Button } from '@/shared/ui';
+import classNames from 'classnames';
 import cls from 'user-control.module.scss';
 
 interface UserControlProps {
@@ -12,7 +13,7 @@ export const UserControl = ( { className = '' }: UserControlProps ) => {
     console.log(user)
     if (isLoading) {
         return (
-            <div>Loading...</div>
+            <div className={classNames(cls.loading, className)}>Loading...</div>
         )
     }
     if (user) {

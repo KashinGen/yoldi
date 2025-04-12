@@ -8,7 +8,7 @@ import { useSelectedLayoutSegment } from 'next/navigation';
 interface FooterProps {
   className?: string;
 }
-const footerContent = () => {
+const useFooterContent = () => {
     const currentPath = useSelectedLayoutSegment();
     if (currentPath === 'login') {
         return (
@@ -25,7 +25,7 @@ export const Footer = ( { className = '' }: FooterProps ) => {
   return (
     <footer className={classNames(cls.footer, className)}>
       <div className={cls.inner}>
-        {footerContent()}
+        {useFooterContent()}
       </div>
     </footer>
   );

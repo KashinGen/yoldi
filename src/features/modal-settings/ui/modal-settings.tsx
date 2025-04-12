@@ -3,15 +3,14 @@ import cls from './modal-settings.module.scss';
 import { LabelledInput } from '@/shared/ui/labelled-input';
 import { editProfileSchema, editProfileValues } from '../model/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Controller, useForm } from 'react-hook-form';
+import {  useForm } from 'react-hook-form';
 
 interface ModalSettingsProps {
-  className?: string;
   onClose: () => void;
 }
 
-export const ModalSettings = ( { onClose, className = '' }: ModalSettingsProps ) => {
-      const { register, control, handleSubmit, formState: { errors }, watch } = useForm<editProfileValues>({
+export const ModalSettings = ( { onClose }: ModalSettingsProps ) => {
+      const { register, handleSubmit, formState: { errors }, watch } = useForm<editProfileValues>({
           resolver: zodResolver(editProfileSchema),
         });
         const formValues = watch();

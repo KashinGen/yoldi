@@ -1,8 +1,7 @@
 'use client'
 import { Form, Input, InputPassword } from '@/shared/ui';
 import cls from './login-form.module.scss';
-import classNames from 'classnames';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { LoginFormValues, loginSchema } from '../model/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Envelope from '@/shared/assets/icons/envelope.svg'
@@ -12,12 +11,8 @@ import { signIn } from '../lib/api';
 import { sessionService } from '@/shared/lib/session';
 
 
-type LoginFormProps = {
-    className?: string;
-};
 
-  
-export const LoginForm = ({ className = '' }: LoginFormProps) => {
+export const LoginForm = () => {
     const { register, handleSubmit, formState: { errors, isSubmitting, isValid }, watch } = useForm<LoginFormValues>({
         resolver: zodResolver(loginSchema),
       });

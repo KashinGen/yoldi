@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import cls from './textarea.module.scss';
 import classNames from 'classnames';
 import {mergeRefs} from "react-merge-refs";

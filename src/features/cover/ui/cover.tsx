@@ -9,6 +9,7 @@ interface CoverProps {
 }
 
 export const Cover = ( { className = '', isEditable, url }: CoverProps ) => {
+  console.log(isEditable)
   return (
     <div className={classNames(cls.cover, className)}>
       {url && <Image alt="cover" src={url}      sizes="100vw" // Tells the browser how much viewport width the image should take

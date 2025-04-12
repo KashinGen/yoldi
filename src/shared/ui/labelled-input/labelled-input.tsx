@@ -14,7 +14,7 @@ type LabelledInputProps =  {
   children: React.ReactElement;
 }
 
-export const LabelledInput = ( { className = '', label, children, ...props }: LabelledInputProps ) => {
+export const LabelledInput = ( { className = '', label, children }: LabelledInputProps ) => {
 // const childrenWithProps = React.cloneElement(children, { ...props });
 
   return (

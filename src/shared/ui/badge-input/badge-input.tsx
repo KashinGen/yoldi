@@ -3,14 +3,13 @@ import classNames from 'classnames';
 import { Input } from '../input';
 
 interface BadgeInputProps extends React.ComponentPropsWithoutRef<'input'> {
-    className?: string; 
     containerClassName?: string;
     icon?: React.ReactNode;
     error?: boolean;
     badgeText: string;
 }
 
-export const BadgeInput = ( { className = '', badgeText, containerClassName = '',  ...props }: BadgeInputProps ) => {
+export const BadgeInput = ( { badgeText, containerClassName = '',  ...props }: BadgeInputProps ) => {
     const contClassName = classNames(
         cls.wrapper,
         {

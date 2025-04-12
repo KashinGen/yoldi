@@ -3,7 +3,6 @@ import cls from './header.module.scss';
 import classNames from 'classnames';
 import Image from 'next/image';
 import LogoImage from './assets/logo-wrapper.png'
-import { Button } from '@/shared/ui';
 import { UserControl } from '@/features';
 
 interface headerProps {

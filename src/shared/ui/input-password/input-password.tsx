@@ -8,13 +8,12 @@ import EyeSlash from '@/shared/assets/icons/eye-slash.svg'
 
 
 interface InputPasswordProps extends React.ComponentPropsWithoutRef<'input'> {
-    className?: string; 
     containerClassName?: string;
     icon?: React.ReactNode;
     error?: boolean;
 }
 
-export const InputPassword = ( { className = '', containerClassName = '',  ...props }: InputPasswordProps ) => {
+export const InputPassword = ( { containerClassName = '',  ...props }: InputPasswordProps ) => {
     const [isShown, setIsShown] = useState(false);
     const contClassName = classNames(
         cls.wrapper,

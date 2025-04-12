@@ -5,7 +5,7 @@ import { User } from '@/entities/user/model/types';
 
 interface AccountListProps {
   className?: string;
-  accounts: any[]
+  accounts: User[]
 }
 
 export const AccountList = ( { className = '', accounts }: AccountListProps ) => {
