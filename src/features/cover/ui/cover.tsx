@@ -6,6 +6,7 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { ImageType } from "@/entities/user/model/types";
 import { useChangeCover } from "../hooks/useChangeCover";
+import { useState } from "react";
 const UploadIcon = dynamic(
   () => import("@/shared/assets/icons/upload-solid.svg"),
 );
@@ -50,6 +51,10 @@ export const Cover = ({
     onApiCallSuccess,
     image,
   });
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleTouchStart = () => setIsHovered(true);
+  const handleTouchEnd = () => setIsHovered(false);
 
   return (
     <div
@@ -58,9 +63,15 @@ export const Cover = ({
         { [cls.editable]: isEditable },
         className,
       )}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       {isEditable && (
-        <div className={cls.uploadWrapper}>
+        <div
+          className={classNames(cls.uploadWrapper, {
+            [cls.hovered]: isHovered,
+          })}
+        >
           <Button
             variant="outline"
             className={cls.uploadBtn}

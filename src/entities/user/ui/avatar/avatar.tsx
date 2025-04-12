@@ -4,6 +4,7 @@ import classNames from "classnames";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useChangeAvatar } from "../../hooks/useChangeAvatar";
+import { useState } from "react";
 const CameraIcon = dynamic(
   () => import("@/shared/assets/icons/camera-solid.svg"),
 );
@@ -49,6 +50,10 @@ export const Avatar = ({
 }: AvatarProps) => {
   const { width, height } = getSize(variant);
   const handleFileChange = useChangeAvatar(props.onChangeAvatarSuccess);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleTouchStart = () => setIsHovered(true);
+  const handleTouchEnd = () => setIsHovered(false);
 
   return (
     <div
@@ -58,9 +63,14 @@ export const Avatar = ({
         { [cls.editable]: props.isEditable },
         className,
       )}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       {props.isEditable && (
-        <label htmlFor="file-input" className={cls.upload}>
+        <label
+          htmlFor="file-input"
+          className={classNames(cls.upload, { [cls.hovered]: isHovered })}
+        >
           <CameraIcon />
           <input
             id="file-input"

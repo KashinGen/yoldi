@@ -16,7 +16,7 @@ export const useChangeAvatar = (callback: (() => void) | undefined) => {
           const imageInfo = await uploadImage(formData);
           await editProfile({ ...user, imageId: imageInfo.id });
           mutate();
-           
+
           callback?.();
         } catch (e) {
           console.log(e);

@@ -47,6 +47,20 @@
   appearance: none;
 }
 
+.upload.hovered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  background: $text-color;
+}
+
 @media screen and (hover: hover) {
   .editable:hover {
     .upload {
