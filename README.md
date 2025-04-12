@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# README: Тестовое задание
 
-## Getting Started
+## Описание
+Проект разработан на **Next.js** с использованием хука `useSWR` для обработки запросов к API. Это тестовое задание включает макет интерфейса (доступный через Figma) и API для взаимодействия с серверной частью. 
 
-First, run the development server:
+Основные функции проекта:
+- Реализация интерфейса на базе макета из Figma.
+- Подключение и обработка данных с использованием предоставленного API.
+- Кеширование и повторная проверка данных с помощью `useSWR`.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Макет
+Макет интерфейса доступен в Figma:  
+**Figma URL**: [Next.js Yoldi Template](https://www.figma.com/design/bv373H6VJ9CkfrhMsSJzhd/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5-%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-Yoldi--Copy-?node-id=13-544&t=ABafYrrMQSQKcuAc-0)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## API
+Базовый URL для работы с API:  
+**API URL**: `https://frontend-test-api.yoldi.agency/api/docs/`
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Как запустить проект
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Предварительные требования
+Убедитесь, что у вас установлены:
+- **Node.js** (рекомендуется LTS версия)
+- **npm** или **yarn**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Шаги по запуску
+1. **Склонируйте репозиторий:**
+   ```bash
+   git clone https://github.com/KashinGen/yoldi.git
+   ```
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. **Установите зависимости:**
+   ```bash
+   npm install
+   # или
+   yarn install
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+3. **Запустите проект в режиме разработки:**
+   ```bash
+   npm run dev
+   # или
+   yarn dev
+   ```
+
+4. **Откройте приложение:**
+   Перейдите в браузер и откройте `http://localhost:3000`.
+
+### Дополнительные команды
+- **Сборка для production:**
+   ```bash
+   npm run build
+   # или
+   yarn build
+   ```
+
+- **Запуск production сборки:**
+   ```bash
+   npm start
+   # или
+   yarn start
+   ```
+
+---
+
+## Особенности разработки
+1. **Работа с `useSWR`:**
+   - `useSWR` автоматически кеширует данные и повторно запрашивает их по мере необходимости.
+
+2. **Figma для дизайна:**
+   - Макет должен быть точно воспроизведён с учётом всех деталей (сеток, отступов, шрифтов и цветов).
+
+3. **Стилизация:**
+   - Компоненты могут быть стилизованы с использованием SASS Modules.
+
+---
+
+## Контакты и поддержка
+Для вопросов о проекте напишите на почту: **gennady.kashin94@gmail.com
+**.
