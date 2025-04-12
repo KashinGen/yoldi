@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { User } from "@/entities/user/model/types";
 import { editProfile } from "@/entities/user/model/api";
 import { useUser } from "@/entities/user";
+import { useRouter } from "next/navigation";
 
 interface ModalSettingsProps {
   onClose: () => void;
@@ -19,7 +20,8 @@ export const ModalSettings = ({
   onSuccess,
   account,
 }: ModalSettingsProps) => {
-  const { mutate } = useUser();
+  const { mutate, user } = useUser();
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -37,9 +39,12 @@ export const ModalSettings = ({
 
   const onSubmit = async (data: editProfileValues) => {
     try {
-      await editProfile(data);
+      const updatedUser = await editProfile(data);
       mutate();
       onSuccess();
+      if (updatedUser.slug !== user!.slug) {
+        router.push(`/personal/${updatedUser.slug}`);
+      }
     } catch (error) {
       console.log(error);
     }

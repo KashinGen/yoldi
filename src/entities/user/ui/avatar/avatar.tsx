@@ -3,10 +3,7 @@ import cls from "./avatar.module.scss";
 import classNames from "classnames";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { ChangeEvent } from "react";
-import { imageSchema, uploadImage, validateFile } from "../../model/image";
-import { useUser } from "../../model";
-import { editProfile } from "../../model/api";
+import { useChangeAvatar } from "../../hooks/useChangeAvatar";
 const CameraIcon = dynamic(
   () => import("@/shared/assets/icons/camera-solid.svg"),
 );
@@ -51,26 +48,7 @@ export const Avatar = ({
   ...props
 }: AvatarProps) => {
   const { width, height } = getSize(variant);
-  const { mutate, user } = useUser();
-  const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const isValid = validateFile(file, imageSchema);
-      if (isValid) {
-        try {
-          const formData = new FormData();
-          formData.append("file", file);
-          const imageInfo = await uploadImage(formData);
-          await editProfile({ ...user, imageId: imageInfo.id });
-          mutate();
-          //eslint-disable-next-line
-          props.onChangeAvatarSuccess && props.onChangeAvatarSuccess();
-        } catch (e) {
-          console.log(e);
-        }
-      }
-    }
-  };
+  const handleFileChange = useChangeAvatar(props.onChangeAvatarSuccess);
 
   return (
     <div

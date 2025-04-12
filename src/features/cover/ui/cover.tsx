@@ -4,16 +4,8 @@ import cls from "./cover.module.scss";
 import classNames from "classnames";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { useRef } from "react";
 import { ImageType } from "@/entities/user/model/types";
-import {
-  imageSchema,
-  uploadImage,
-  validateFile,
-} from "@/entities/user/model/image";
-import { editProfile } from "@/entities/user/model/api";
-import { useUser } from "@/entities/user";
-import { useRouter } from "next/navigation";
+import { useChangeCover } from "../hooks/useChangeCover";
 const UploadIcon = dynamic(
   () => import("@/shared/assets/icons/upload-solid.svg"),
 );
@@ -54,49 +46,10 @@ export const Cover = ({
   onApiCallSuccess,
   image,
 }: CoverProps) => {
-  const fileInput = useRef<HTMLInputElement>(null);
-  const { mutate, user } = useUser();
-  const router = useRouter();
-  const onBtnClick = async () => {
-    if (image) {
-      try {
-        await editProfile({ ...user, coverId: null });
-        mutate();
-        onApiCallSuccess();
-      } catch (e) {
-        console.log(e);
-      }
-    } else {
-      if (fileInput.current) {
-        fileInput.current.click();
-      }
-    }
-  };
-
-  const handleImgChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const isValid = validateFile(file, imageSchema);
-      if (isValid) {
-        try {
-          const formData = new FormData();
-          formData.append("file", file);
-          const imageInfo = await uploadImage(formData);
-          const updatedUser = await editProfile({
-            ...user,
-            coverId: imageInfo.id,
-          });
-          mutate();
-          onApiCallSuccess();
-          if (updatedUser.slug !== user!.slug) {
-            router.push(`/personal/${updatedUser.slug}`);
-          }
-        } catch (e) {
-          console.log(e);
-        }
-      }
-    }
-  };
+  const { onBtnClick, ref, handleImgChange } = useChangeCover({
+    onApiCallSuccess,
+    image,
+  });
 
   return (
     <div
@@ -118,7 +71,7 @@ export const Cover = ({
           <input
             type="file"
             className={cls.inputFile}
-            ref={fileInput}
+            ref={ref}
             onChange={handleImgChange}
           />
         </div>
