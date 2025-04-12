@@ -1,3 +1,4 @@
+"use client";
 import { API_URL } from "@/shared/const";
 import cls from "./avatar.module.scss";
 import classNames from "classnames";
