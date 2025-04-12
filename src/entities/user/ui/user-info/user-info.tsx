@@ -59,6 +59,7 @@ export const UserInfo = ({
           variant="big"
           className={cls.avatar}
           url={image?.url}
+          isEditable={isOwner}
         />
       </div>
       <div className={cls.controls}>

@@ -6,6 +6,7 @@
   height: 200px;
   border-bottom: 1px solid $strokes-secondady;
   background-color: $background-secondary;
+  position: relative;
 }
 
 .image {
@@ -13,4 +14,35 @@
   height: 200px;
   object-fit: cover;
   object-position: center;
+}
+
+.inputFile {
+  display: none;
+  appearance: none;
+}
+
+.uploadWrapper {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.btnContent {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.uploadBtn {
+  padding: 0 22px !important;
+}
+
+@media screen and (hover: hover) {
+  .editable:hover {
+    .uploadWrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }
