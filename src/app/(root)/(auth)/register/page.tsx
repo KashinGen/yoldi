@@ -1,4 +1,4 @@
-import { RegisterForm } from "@/features/register-form/ui/register-form";
+import { Register } from "@/page";
 import { Metadata } from "next/types";
 
 export const metadata: Metadata = {
@@ -11,6 +11,6 @@ export const metadata: Metadata = {
 };
 
 export default function LoginPage() {
-  return ( <RegisterForm/>
+  return ( <Register/>
   );
 }

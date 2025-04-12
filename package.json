@@ -10,17 +10,22 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
+    "axios": "^1.8.4",
     "classnames": "^2.5.1",
+    "js-cookie": "^3.0.5",
     "next": "15.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.55.0",
     "react-merge-refs": "^2.1.1",
     "sass": "^1.86.3",
+    "swr": "^2.3.3",
     "zod": "^3.24.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@svgr/webpack": "^8.1.0",
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

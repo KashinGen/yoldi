@@ -1,4 +1,4 @@
-import { LoginForm } from "@/features/login-form/ui/login-form";
+import { Login } from "@/page";
 import { Metadata } from "next/types";
 
 export const metadata: Metadata = {
@@ -12,6 +12,6 @@ export const metadata: Metadata = {
 
 
 export default function LoginPage() {
-  return ( <LoginForm/>
+  return ( <Login/>
   );
 }

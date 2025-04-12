@@ -4,12 +4,15 @@ import classNames from 'classnames';
 import Image from 'next/image';
 import LogoImage from './assets/logo-wrapper.png'
 import { Button } from '@/shared/ui';
+import { UserControl } from '@/features';
 
 interface headerProps {
   className?: string;
 }
 
 export const Header = ( { className = '' }:headerProps ) => {
+
+  
   return (
     <header className={classNames(cls.header, className)}>
       <div className={cls.inner}>
@@ -20,7 +23,7 @@ export const Header = ( { className = '' }:headerProps ) => {
             <p className={cls.slogan}>Разрабатываем и запускаем сложные веб проекты</p>
         </div>
         <div className={cls.controls}>
-            <Button variant='outline' as='link' href='/login'>Войти</Button>
+            <UserControl/>
         </div>
 
       </div>

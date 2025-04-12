@@ -1,15 +1,22 @@
-import useSWR from "swr";
+'use client';
+import useSWR from 'swr';
+import { apiRoutes } from '@/shared/lib/api';
+import { axiosInstance } from '@/shared/lib/axios';
+import { User } from './types';
+import { sessionService } from '@/shared/lib/session';
 
-const fetcher = (url: string) =>
-  fetch(url, { credentials: "include" }).then((res) => res.json());
+export const useUser = () => {
+  const getMyProfile = async () => {
+    const response = await axiosInstance.get<User>(apiRoutes.profile);
+    return response.data;
+  };
 
-export function useUser() {
-  const { data, error, mutate } = useSWR("/api/user", fetcher);
+  const { data, isLoading, error, mutate } = useSWR([apiRoutes.profile, sessionService.get()], getMyProfile); 
 
   return {
     user: data,
-    isLoading: !error && !data,
-    isError: error,
+    isLoading,
+    error,
     mutate,
   };
-}
+};

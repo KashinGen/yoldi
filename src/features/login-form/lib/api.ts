@@ -1,13 +1,9 @@
-import { useApiMutation } from "@/entities/user/model/useSwrMutation";
 import { LoginFormValues } from "../model/schema";
+import { axiosInstance } from "@/shared/lib/axios";
+import { apiRoutes } from "@/shared/lib/api";
 
-const { trigger, isMutating } = useApiMutation<LoginFormValues>("/api/auth/login");
 
-export const onSubmit = async (data: LoginFormValues) => {
-  try {
-    const response = await trigger();
-    console.log(response); // Handle success (e.g., redirect or store token)
-  } catch (error) {
-    console.error(error); // Handle error
-  }
+export const signIn = async (data: LoginFormValues) => {
+  const response = await axiosInstance.post<{ value: string }>(apiRoutes.auth.login, data);
+  return response.data;
 };

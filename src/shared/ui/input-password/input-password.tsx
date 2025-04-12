@@ -28,7 +28,7 @@ export const InputPassword = ( { className = '', containerClassName = '',  ...pr
     return (
         <div className={contClassName}>
             <Input {...props} type={isShown ? 'text' : 'password'} />
-            <button className={cls.button} onClick={() => setIsShown(!isShown)}>
+            <button className={cls.button} onClick={() => setIsShown(!isShown)} type='button'>
                 {isShown ? <EyeSlash/> : <Eye/>}
             </button>
         </div>

@@ -1,14 +1,15 @@
 'use client'
 import { Form, Input, InputPassword } from '@/shared/ui';
 import cls from './register-form.module.scss';
-import classNames from 'classnames';
-
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
 import {  RegisterFormValues, registerSchema } from '../model/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import User from '@/shared/assets/icons/user.svg'
 import Envelope from '@/shared/assets/icons/envelope.svg'
 import Lock from '@/shared/assets/icons/lock-solid.svg'
+import { signUp } from '../lib/api';
+import { sessionService } from '@/shared/lib/session';
 
 
 type RegisterFormProps = {
@@ -17,19 +18,21 @@ type RegisterFormProps = {
 
   
 export const RegisterForm = ({ className = '' }: RegisterFormProps) => {
-    const { register, handleSubmit, formState: { errors }, watch } = useForm<RegisterFormValues>({
+    const { register, handleSubmit, formState: { errors, isSubmitting, isValid }, watch } = useForm<RegisterFormValues>({
         resolver: zodResolver(registerSchema),
       });
       const formValues = watch();
+      const router = useRouter();
+
     
       const onSubmit = async (data: RegisterFormValues) => {
-        console.log(data)
-        // try {
-        //   const response = await loginUser(data);
-        //   console.log("Logged in!", response);
-        // } catch (error) {
-        //   console.error("Login failed", error);
-        // }
+        try {
+            const { value } = await signUp (data);
+            sessionService.set(value)
+            router.push('/');
+          } catch (error) {
+            console.log(error)
+          }
       };
 
     return (
@@ -38,7 +41,7 @@ export const RegisterForm = ({ className = '' }: RegisterFormProps) => {
             submitText='Создать аккаунт'
             onSubmit={handleSubmit(onSubmit)}
             autoComplete="off"
-            disabled={!formValues.email || !formValues.password}
+            disabled={isSubmitting || !isValid}
             >
                 <Input placeholder='Имя' type='text'
                     {...register("name", { required: "Name is required" })}

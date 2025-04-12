@@ -1,22 +1,33 @@
 'use client'
+import dynamic from 'next/dynamic';
 import cls from './user-info.module.scss';
 import classNames from 'classnames';
 import { Avatar } from '../avatar';
 import { Button } from '@/shared/ui';
-import PenIcon from '@/shared/assets/icons/pen-solid.svg'
-import SignOut from '@/shared/assets/icons/sign-out-alt-solid.svg'
+// import PenIcon from '@/shared/assets/icons/pen-solid.svg'
+// import SignOut from '@/shared/assets/icons/sign-out-alt-solid.svg'
+const PenIcon = dynamic(() => import('@/shared/assets/icons/pen-solid.svg'), {
+  ssr: false, // Disable server-side rendering if the component relies on the DOM or window
+});
+
+const SignOutIcon = dynamic(() => import('@/shared/assets/icons/sign-out-alt-solid.svg'), {
+  ssr: false, // Same as above
+});
 import { useState } from 'react';
-import { ModalSettings } from '@/features/modal-settings';
+const ModalSettings = dynamic(() => import('@/features/modal-settings').then((mod) => mod.ModalSettings), {
+  ssr: false, 
+});
+import { User } from '../../model/types';
 
 interface UserInfoProps {
   className?: string;
-  name: string;
-  email: string;
-  descripton: string;
+  account: User,
+  isOwner: boolean;
 
 }
 
-export const UserInfo = ( { name, email, descripton, className = '' }: UserInfoProps ) => {
+export const UserInfo = ( { account, isOwner, className = '' }: UserInfoProps ) => {
+  const { name, description, email } = account;
     const [isModalOpened, setIsModalOpened] = useState(false);
   return (
     <section className={classNames(cls.info, className)}>
@@ -28,17 +39,17 @@ export const UserInfo = ( { name, email, descripton, className = '' }: UserInfoP
             <span className={cls.name}>{name}</span>
             <span className={cls.email}>{email}</span>
         </div>
-        <Button variant='outline' className={cls.btn} onClick={() => setIsModalOpened(true)}>
+        {isOwner && <Button variant='outline' className={cls.btn} onClick={() => setIsModalOpened(true)}>
             <PenIcon/><span>Редактировать</span>
-        </Button>
+        </Button>}
       </div>
       <div className={cls.description}>
-        {descripton}
+        {description}
       </div>
       <div className={cls.bottom}>
-        <Button variant='outline' className={cls.btn}>
-            <SignOut/><span>Выйти</span>
-        </Button>
+      {isOwner && <Button variant='outline' className={cls.btn}>
+            <SignOutIcon/><span>Выйти</span>
+        </Button>}
       </div>
       {isModalOpened && <ModalSettings onClose={() => setIsModalOpened(false)}/>}
     </section>
