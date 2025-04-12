@@ -4,31 +4,44 @@ import cls from './user-info.module.scss';
 import classNames from 'classnames';
 import { Avatar } from '../avatar';
 import { Button } from '@/shared/ui';
-// import PenIcon from '@/shared/assets/icons/pen-solid.svg'
-// import SignOut from '@/shared/assets/icons/sign-out-alt-solid.svg'
 const PenIcon = dynamic(() => import('@/shared/assets/icons/pen-solid.svg'), {
-  ssr: false, // Disable server-side rendering if the component relies on the DOM or window
+  ssr: false, 
 });
 
 const SignOutIcon = dynamic(() => import('@/shared/assets/icons/sign-out-alt-solid.svg'), {
-  ssr: false, // Same as above
+  ssr: false, 
 });
 import { useState } from 'react';
 const ModalSettings = dynamic(() => import('@/features/modal-settings').then((mod) => mod.ModalSettings), {
   ssr: false, 
 });
 import { User } from '../../model/types';
+import { sessionService } from '@/shared/lib/session';
+import { KeyedMutator } from 'swr';
 
 interface UserInfoProps {
   className?: string;
   account: User,
   isOwner: boolean;
+  mutate: KeyedMutator<User>
 
 }
 
-export const UserInfo = ( { account, isOwner, className = '' }: UserInfoProps ) => {
+export const UserInfo = ( { account, isOwner, mutate, className = '' }: UserInfoProps ) => {
   const { name, description, email } = account;
     const [isModalOpened, setIsModalOpened] = useState(false);
+
+    const onSignOut = () => {
+      sessionService.remove();
+      window.location.reload();
+    };
+
+    const onEditSuccess = () => {
+      setIsModalOpened(false);
+      mutate()
+    }
+
+    
   return (
     <section className={classNames(cls.info, className)}>
       <div className={cls.top}>
@@ -47,11 +60,11 @@ export const UserInfo = ( { account, isOwner, className = '' }: UserInfoProps ) 
         {description}
       </div>
       <div className={cls.bottom}>
-      {isOwner && <Button variant='outline' className={cls.btn}>
+      {isOwner && <Button variant='outline' className={cls.btn} onClick={onSignOut}>
             <SignOutIcon/><span>Выйти</span>
         </Button>}
       </div>
-      {isModalOpened && <ModalSettings onClose={() => setIsModalOpened(false)}/>}
+      {isModalOpened && <ModalSettings onSuccess={onEditSuccess} onClose={() => setIsModalOpened(false)} account={account}/>}
     </section>
   );
 };

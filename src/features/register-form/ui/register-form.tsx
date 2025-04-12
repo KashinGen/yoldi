@@ -52,7 +52,7 @@ export const RegisterForm = () => {
                     {...register("email", { required: "Email is required" })}
                     error={!!errors.email}
                     icon={<Envelope/>}
-                    autoFocus 
+                     
                     value={formValues.email}
                     containerClassName={cls.input}
 

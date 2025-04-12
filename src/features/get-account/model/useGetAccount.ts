@@ -1,13 +1,14 @@
 'use client';
 import useSWR from "swr";
-import { fetchAccounts } from "./api";
+import { getUsers } from "./api";
 import { apiRoutes } from "@/shared/lib/api";
 
 export const useGetAccounts = () => {
-  const { data, error } = useSWR(apiRoutes.user.list, fetchAccounts);
+  const { data, isLoading, error, mutate } = useSWR(apiRoutes.user.list, getUsers);
   return {
-    accounts: data,
-    isLoading: !error && !data,
+    accounts: data ?? [],
+    isLoading,
     error,
+    mutate
   };
 };

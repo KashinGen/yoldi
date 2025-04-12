@@ -1,15 +1,8 @@
-import { API_URL } from "@/shared/const";
+import { User } from "@/entities/user/model/types";
 import { apiRoutes } from "@/shared/lib/api";
+import { axiosInstance } from "@/shared/lib/axios";
 
-export const fetchAccounts = async () => {
-    const response = await fetch(API_URL + apiRoutes.user.list);
-  
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "Failed to fetch accounts");
-    }
-  
-    const data = await response.json();
-    console.log(data)
-    return data; // Возвращаем только массив аккаунтов
+export const getUsers = async () => {
+  const response = await axiosInstance.get<User[]>(apiRoutes.user.list);
+  return response.data;
 };

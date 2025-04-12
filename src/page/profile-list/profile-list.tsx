@@ -2,12 +2,13 @@
 import { useGetAccounts } from "@/features";
 import { AccountList } from "@/widgets";
 import cls from './profile-list.module.scss';
+import { Spinner } from "@/shared/ui";
 
 export const ProfileListPage = () => {
   const { accounts, isLoading, error } = useGetAccounts();
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (isLoading) return <div className='loading-container'><Spinner/></div>;
+  if (error) return <div className='loading-container'>Error: {error.message}</div>;
   
   return (
     <div className={cls.wrapper}>

@@ -1,3 +1,4 @@
+export { Spinner } from "./spinner";
 export { BadgeInput } from "./badge-input";
 export { Textarea } from "./textarea";
 export { Modal } from "./modal";

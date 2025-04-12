@@ -4,26 +4,37 @@ import { LabelledInput } from '@/shared/ui/labelled-input';
 import { editProfileSchema, editProfileValues } from '../model/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {  useForm } from 'react-hook-form';
+import { User } from '@/entities/user/model/types';
+import { editProfile } from '../lib/api';
+import { useUser } from '@/entities/user';
 
 interface ModalSettingsProps {
   onClose: () => void;
+  onSuccess: () => void;
+  account: User;
 }
 
-export const ModalSettings = ( { onClose }: ModalSettingsProps ) => {
+export const ModalSettings = ( { onClose, onSuccess, account }: ModalSettingsProps ) => {
+      const {mutate} = useUser();
       const { register, handleSubmit, formState: { errors }, watch } = useForm<editProfileValues>({
           resolver: zodResolver(editProfileSchema),
+          defaultValues: {
+            name: account.name,
+            slug: account.slug,
+            description: account.description
+          }
         });
         const formValues = watch();
       
-        const onSubmit = async (data: editProfileValues) => {
-          console.log(data)
-          // try {
-          //   const response = await loginUser(data);
-          //   console.log("Logged in!", response);
-          // } catch (error) {
-          //   console.error("Login failed", error);
-          // }
-        };
+      const onSubmit = async (data: editProfileValues) => {
+        try {
+            await editProfile(data);
+            mutate();
+            onSuccess();
+          } catch (error) {
+            console.log(error)
+          }
+      };
         
   return (
     <Modal onClose={onClose} baseHeight={579}>

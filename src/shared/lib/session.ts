@@ -10,9 +10,9 @@ export const sessionService = {
   set: (token: string) => {
     console.log(token)
     Cookies.set(SESSION_COOKIE_NAME, token, {
-      httpOnly: true,
-      secure: true,
-      expires: 3600,
+      expires: 5,
+      path: '/',
+      sameSite: 'strict',
     });
   },
   get: () => {

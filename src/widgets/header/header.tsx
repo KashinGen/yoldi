@@ -21,9 +21,7 @@ export const Header = ( { className = '' }:headerProps ) => {
             </Link>
             <p className={cls.slogan}>Разрабатываем и запускаем сложные веб проекты</p>
         </div>
-        <div className={cls.controls}>
             <UserControl/>
-        </div>
 
       </div>
     </header>
