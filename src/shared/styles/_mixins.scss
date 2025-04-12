@@ -1,35 +1,35 @@
 @mixin title {
   font-weight: 500;
-  font-size: 1.875rem; 
+  font-size: 1.875rem;
   line-height: 140%;
 }
 
 @mixin subtitle {
   font-weight: 400;
-  font-size: 1.125rem; 
+  font-size: 1.125rem;
   line-height: 140%;
 }
 
 @mixin paragraph {
   font-weight: 400;
-  font-size: 1rem; 
+  font-size: 1rem;
   line-height: 160%;
 }
 
 @mixin paragraph-mini {
   font-weight: 400;
-  font-size: 0.75rem; 
+  font-size: 0.75rem;
   line-height: 160%;
 }
 
 @mixin button-text {
   font-weight: 500;
-  font-size: 1rem; 
+  font-size: 1rem;
   line-height: 160%;
 }
 
-@mixin default-transition($var){
-  transition: $var .3s ease-in;
+@mixin default-transition($var) {
+  transition: $var 0.3s ease-in;
 }
 
 @mixin hide-scrollbar() {
@@ -49,16 +49,13 @@
   }
 }
 
-
-
-
 @mixin skeleton {
   overflow: hidden;
 
   position: relative;
 
   &::before {
-    content: '';
+    content: "";
 
     position: absolute;
 
@@ -72,9 +69,9 @@
       #ffffff 38%,
       #f2f2f2 40%,
       #e5e5e5 48%
-  );
-  background-size: 200% 100%;
-  background-position: 100% 0;
-  animation: load 1.5s infinite;
+    );
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    animation: load 1.5s infinite;
   }
 }

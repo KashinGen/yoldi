@@ -1,10 +1,9 @@
-@use '../../shared/styles/mixins' as *;
-@use '../../shared/styles/vars' as *;
-
+@use "../../shared/styles/mixins" as *;
+@use "../../shared/styles/vars" as *;
 
 .list {
-    border-top: 1px solid $strokes-secondady;
-    li {
-        border-bottom: 1px solid $strokes-secondady;
-    }
+  border-top: 1px solid $strokes-secondady;
+  li {
+    border-bottom: 1px solid $strokes-secondady;
+  }
 }

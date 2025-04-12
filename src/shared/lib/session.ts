@@ -1,17 +1,13 @@
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
-import { SESSION_COOKIE_NAME } from '../const';
-
-
-
-
+import { SESSION_COOKIE_NAME } from "../const";
 
 export const sessionService = {
   set: (token: string) => {
-   Cookies.set(SESSION_COOKIE_NAME, token, {
+    Cookies.set(SESSION_COOKIE_NAME, token, {
       expires: 5,
-      path: '/',
-      sameSite: 'strict',
+      path: "/",
+      sameSite: "strict",
     });
   },
   get: () => {
@@ -19,7 +15,7 @@ export const sessionService = {
   },
   remove: () => {
     Cookies.remove(SESSION_COOKIE_NAME, {
-      path: '/',
+      path: "/",
     });
   },
 };
