@@ -13,6 +13,7 @@ import {
 } from "@/entities/user/model/image";
 import { editProfile } from "@/entities/user/model/api";
 import { useUser } from "@/entities/user";
+import { useRouter } from "next/navigation";
 const UploadIcon = dynamic(
   () => import("@/shared/assets/icons/upload-solid.svg"),
 );
@@ -54,11 +55,12 @@ export const Cover = ({
   image,
 }: CoverProps) => {
   const fileInput = useRef<HTMLInputElement>(null);
-  const { mutate } = useUser();
+  const { mutate, user } = useUser();
+  const router = useRouter();
   const onBtnClick = async () => {
     if (image) {
       try {
-        await editProfile({ coverId: null });
+        await editProfile({ ...user, coverId: null });
         mutate();
         onApiCallSuccess();
       } catch (e) {
@@ -80,9 +82,15 @@ export const Cover = ({
           const formData = new FormData();
           formData.append("file", file);
           const imageInfo = await uploadImage(formData);
-          await editProfile({ coverId: imageInfo.id });
+          const updatedUser = await editProfile({
+            ...user,
+            coverId: imageInfo.id,
+          });
           mutate();
           onApiCallSuccess();
+          if (updatedUser.slug !== user!.slug) {
+            router.push(`/personal/${updatedUser.slug}`);
+          }
         } catch (e) {
           console.log(e);
         }

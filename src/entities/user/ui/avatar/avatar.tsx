@@ -51,7 +51,7 @@ export const Avatar = ({
   ...props
 }: AvatarProps) => {
   const { width, height } = getSize(variant);
-  const { mutate } = useUser();
+  const { mutate, user } = useUser();
   const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -61,7 +61,7 @@ export const Avatar = ({
           const formData = new FormData();
           formData.append("file", file);
           const imageInfo = await uploadImage(formData);
-          await editProfile({ imageId: imageInfo.id });
+          await editProfile({ ...user, imageId: imageInfo.id });
           mutate();
           //eslint-disable-next-line
           props.onChangeAvatarSuccess && props.onChangeAvatarSuccess();
