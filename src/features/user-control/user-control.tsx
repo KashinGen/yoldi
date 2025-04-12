@@ -2,7 +2,7 @@
 import { useUser } from '@/entities/user';
 import { Button } from '@/shared/ui';
 import classNames from 'classnames';
-import cls from 'user-control.module.scss';
+import cls from './user-control.module.scss';
 
 interface UserControlProps {
   className?: string;
