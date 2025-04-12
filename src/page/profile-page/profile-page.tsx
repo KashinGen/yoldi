@@ -17,7 +17,7 @@ export const ProfilePage = ({slug}: {slug: string} ) => {
   
   return (
     <>
-      <Cover/>
+      <Cover image={profile.cover} isEditable={!!isOwner}/>
       <UserInfo account={profile} isOwner={!!isOwner} mutate={mutate}/>
     </>
   )

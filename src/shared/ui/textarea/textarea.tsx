@@ -12,7 +12,6 @@ interface InputProps extends React.ComponentProps<'textarea'> {
 }
 
 export const Textarea = ({ className = '', icon, error, disabled, value, ...props }: InputProps ) => {
-  console.log(value, props)
     const textareaRef = useRef<HTMLTextAreaElement | null>(null);
     const contClassName = classNames(
         cls.container,

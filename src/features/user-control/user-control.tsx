@@ -12,7 +12,6 @@ interface UserControlProps {
 
 export const UserControl = ( { className = '' }: UserControlProps ) => {
     const { user, isLoading } = useUser();
-    console.log(user)
     if (isLoading) {
         return (
             <div className={classNames(cls.badge, cls.loading, className)}>

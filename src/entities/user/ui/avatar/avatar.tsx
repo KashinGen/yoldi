@@ -1,3 +1,4 @@
+import { API_URL } from '@/shared/const';
 import cls from './avatar.module.scss';
 import classNames from 'classnames';
 import Image from 'next/image';
@@ -28,13 +29,12 @@ const getSize = (variant: 'big' | 'small') => {
 
 export const Avatar = ( {name, url, variant, className = '' }: AvatarProps ) => {
     const {width, height } = getSize(variant);
-
   return (
     <div className={classNames(cls.avatar, cls[variant], className)}>
       {
-        url
+        (url && url.includes(API_URL))
         ?
-        <Image alt={name} src={url} width={width} height={height}/>
+        <Image alt={name} src={url} width={width} height={height} className={cls.image}/>
         :
         <span>{name[0].toUpperCase()}</span>
       }

@@ -5,18 +5,18 @@ import Image from 'next/image';
 interface CoverProps {
   className?: string;
   isEditable?: boolean;
-  url?: string
+  image?: {
+    url: string;
+    width: number;
+    height: number;
+  }
 }
 
-export const Cover = ( { className = '', isEditable, url }: CoverProps ) => {
-  console.log(isEditable)
+export const Cover = ( { className = '', isEditable, image }: CoverProps ) => {
   return (
     <div className={classNames(cls.cover, className)}>
-      {url && <Image alt="cover" src={url}      sizes="100vw" // Tells the browser how much viewport width the image should take
-      style={{
-        width: '100%', // Ensure the image takes 100% of its container
-        height: 'auto', // Maintain aspect ratio
-      }}
+      {image && <Image alt="cover" src={image.url} width={image.width} height={image.height} sizes="100vw"
+      className={cls.image}
       priority />}
     </div>
   );

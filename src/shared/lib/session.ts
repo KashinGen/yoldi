@@ -8,8 +8,7 @@ import { SESSION_COOKIE_NAME } from '../const';
 
 export const sessionService = {
   set: (token: string) => {
-    console.log(token)
-    Cookies.set(SESSION_COOKIE_NAME, token, {
+   Cookies.set(SESSION_COOKIE_NAME, token, {
       expires: 5,
       path: '/',
       sameSite: 'strict',

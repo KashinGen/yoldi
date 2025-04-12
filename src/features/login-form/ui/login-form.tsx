@@ -23,7 +23,6 @@ export const LoginForm = () => {
       const onSubmit = async (data: LoginFormValues) => {
         try {
             const { value } = await signIn(data);
-            console.log(value)
             sessionService.set(value)
             router.push('/');
           } catch (error) {

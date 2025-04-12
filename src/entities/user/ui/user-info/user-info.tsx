@@ -28,7 +28,7 @@ interface UserInfoProps {
 }
 
 export const UserInfo = ( { account, isOwner, mutate, className = '' }: UserInfoProps ) => {
-  const { name, description, email } = account;
+  const { name, description, email, image } = account;
     const [isModalOpened, setIsModalOpened] = useState(false);
 
     const onSignOut = () => {
@@ -45,7 +45,7 @@ export const UserInfo = ( { account, isOwner, mutate, className = '' }: UserInfo
   return (
     <section className={classNames(cls.info, className)}>
       <div className={cls.top}>
-        <Avatar name={name} variant='big' className={cls.avatar}/>
+        <Avatar name={name} variant='big' className={cls.avatar} url={image?.url}/>
       </div>
       <div className={cls.controls}>
         <div className={cls.left}>

@@ -8,12 +8,13 @@ interface UserCardProps {
   name: string;
   email: string;
   slug: string;
+  url?: string;
 }
 
-export const UserCard = ( { className = '', name, email, slug }: UserCardProps ) => {
+export const UserCard = ( { className = '', name, email, slug, url }: UserCardProps ) => {
   return (
     <Link className={classNames(cls.card, className)} href={`/personal/${slug}`}>
-      <Avatar name={name} variant={'small'}/>
+      <Avatar name={name} variant={'small'} url={url}/>
       <div className={cls.content}>
         <span className={cls.name}>{name}</span>
         <span className={cls.email}>{email}</span>

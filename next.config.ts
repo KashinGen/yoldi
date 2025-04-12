@@ -1,7 +1,18 @@
 import type { NextConfig } from "next";
 
 module.exports = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'frontend-test-api.yoldi.agency',
+        port: '', 
+        pathname: '/**', 
+      },
+    ],
+  },
   webpack(config: NextConfig) {
+    
     const fileLoaderRule = config.module.rules.find((rule: any) =>
       rule.test?.test?.('.svg'),
     )

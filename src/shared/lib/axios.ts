@@ -15,8 +15,7 @@ const axiosInstance = axios.create(baseAxiosConfig);
 
 axiosInstance.interceptors.request.use(config => {
   const xApiKey = sessionService.get();
-  console.log(xApiKey)
-  if (xApiKey) {
+ if (xApiKey) {
     config.headers['x-api-key'] = xApiKey;
   }
 

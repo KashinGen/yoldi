@@ -13,7 +13,7 @@ export const AccountList = ( { className = '', accounts }: AccountListProps ) =>
     <ul className={classNames(cls.list, className)}>
         {accounts.map((account: User) => (
             <li key={account.slug}>
-                <UserCard   name={account.name} slug={account.slug} email={account.email}/>
+                <UserCard   name={account.name} slug={account.slug} email={account.email} url={account.image?.url}/>
             </li>
             
         ))}
