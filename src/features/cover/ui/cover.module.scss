@@ -43,10 +43,8 @@
 
 @media screen and (hover: hover) {
   .editable:hover {
-    .uploadWrapper {
+    .uploadBtn {
       display: flex;
-      align-items: center;
-      justify-content: center;
     }
   }
 }
