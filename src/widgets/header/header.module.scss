@@ -3,9 +3,14 @@
 
 .header {
   border-bottom: 1px solid $strokes-secondady;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  background-color: $background-primary;
+  width: 100%;
 }
 .inner {
-  height: 80px;
+  height: $header-height;
   padding: 15px 29.6px 15px 20px;
   display: flex;
   align-items: center;

@@ -3,7 +3,7 @@ import React from "react";
 import classNames from "classnames";
 import Link from "next/link";
 
-interface ButtonProps extends React.ComponentPropsWithoutRef<"button"> {
+interface ButtonProps extends React.ComponentProps<"button"> {
   variant?: "filled" | "outline";
   className?: string;
   as?: "link" | "button";

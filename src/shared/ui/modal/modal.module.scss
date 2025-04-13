@@ -30,8 +30,8 @@
 
 @media screen and (max-width: 670px) {
   .modalOverlay {
-    top: 80px;
-    height: calc(100vh - 80px);
+    top: $header-height;
+    height: calc(100vh - $header-height);
   }
   .modalContent {
     top: 0;

@@ -6,7 +6,8 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { ImageType } from "@/entities/user/model/types";
 import { useChangeCover } from "../hooks/useChangeCover";
-import { useState } from "react";
+import { RefObject, useRef } from "react";
+import { useTouchVisible } from "@/entities/user/hooks/useTouchVisible";
 const UploadIcon = dynamic(
   () => import("@/shared/assets/icons/upload-solid.svg"),
 );
@@ -51,10 +52,9 @@ export const Cover = ({
     onApiCallSuccess,
     image,
   });
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleTouchStart = () => setIsHovered(true);
-  const handleTouchEnd = () => setIsHovered(false);
+  const excludedRef = useRef<HTMLButtonElement>(null);
+  const { targetRef, isHovered, handleTouchEnd } =
+    useTouchVisible<HTMLDivElement>([ref as RefObject<HTMLElement>]);
 
   return (
     <div
@@ -63,29 +63,31 @@ export const Cover = ({
         { [cls.editable]: isEditable },
         className,
       )}
-      onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
+      ref={targetRef}
     >
       {isEditable && (
-        <div
-          className={classNames(cls.uploadWrapper, {
-            [cls.hovered]: isHovered,
-          })}
+        // <div
+        //   className={classNames(cls.uploadWrapper, {
+        //     [cls.hovered]: isHovered,
+        //   })}
+        // >
+        <Button
+          variant="outline"
+          className={classNames(cls.uploadBtn, { [cls.hovered]: isHovered })}
+          onClick={onBtnClick}
+          ref={excludedRef}
         >
-          <Button
-            variant="outline"
-            className={cls.uploadBtn}
-            onClick={onBtnClick}
-          >
-            {getBtnContent(image)}
-          </Button>
           <input
             type="file"
             className={cls.inputFile}
             ref={ref}
             onChange={handleImgChange}
           />
-        </div>
+          {getBtnContent(image)}
+        </Button>
+
+        // </div>
       )}
       {image && (
         <Image
