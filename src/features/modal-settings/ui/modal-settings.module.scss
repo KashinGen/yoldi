@@ -39,5 +39,16 @@
   height: 50px !important;
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 670px) {
+  .btnGroup {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px;
+    background: $background-primary;
+  }
+  .formGroup {
+    padding-bottom: 110px;
+  }
 }

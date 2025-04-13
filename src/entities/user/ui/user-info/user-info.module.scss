@@ -4,7 +4,7 @@
 .info {
   max-width: 860px;
   margin: 0 auto;
-  padding: 0 30px;
+  padding: 0 30px 30px;
 }
 .controls {
   display: flex;
@@ -38,6 +38,8 @@
 .description {
   max-width: 600px;
   @include paragraph;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .avatar {
