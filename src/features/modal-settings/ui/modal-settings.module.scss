@@ -41,14 +41,16 @@
 
 @media screen and (max-width: 670px) {
   .btnGroup {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     padding: 30px;
+    padding-top: 25px;
     background: $background-primary;
+    margin: 0;
   }
   .formGroup {
-    padding-bottom: 110px;
+    padding-bottom: 155px;
   }
 }
